@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, viewChild, ViewChild} from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
     selector: 'cv-frame',
@@ -7,23 +7,15 @@ import {AfterViewInit, Component, ElementRef, viewChild, ViewChild} from '@angul
     templateUrl: './cv-frame.component.html',
     styleUrl: './cv-frame.component.css'
 })
-export class CvFrameComponent implements AfterViewInit {
+export class CvFrameComponent {
 
-    @ViewChild(`cvframe`) cvframeRef!: ElementRef;
-    ngAfterViewInit() {
-        // TODO Fix CORS errors and missing `window` property.
-        // if (this.cvframeRef) {
-        //     const frame: HTMLIFrameElement = this.cvframeRef.nativeElement;
-        //     frame.onload = (): void => {
-        //         if (frame.contentWindow) {
-        //             frame.style.height = frame.contentWindow.document.body.scrollHeight + "px";
-        //             frame.style.width = frame.contentWindow.document.body.scrollWidth + "px";
-        //         }
-        //
-        //     }
-        // }
+    private baseUrl = "https://registry.jsonresume.org/bradykelly"
+    @Input() currentTheme: string = ""
 
-
+    getCvUrl(): string {
+        if (this.currentTheme) {
+            return this.baseUrl + "?" + this.currentTheme
+        }
+        return this.baseUrl
     }
-
 }
