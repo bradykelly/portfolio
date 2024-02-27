@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {CvFrameComponent} from "./cv-frame/cv-frame.component";
 import {ThemeService} from "./theme.service";
@@ -18,15 +18,19 @@ import {LoggingTestComponent} from "./logging-test/logging-test.component";
     templateUrl: './app.component.html',
     styleUrl: './app.component.css'
 })
-export class AppComponent implements AfterViewInit{
+export class AppComponent implements OnInit{
 
-    selectedTheme = ""
     themeNames: string[] = []
+    selectedTheme = ""
 
     constructor(private themeService: ThemeService) {
     }
 
-    ngAfterViewInit(): void {
-        this.themeNames = this.themeService.getPackageNames()
+    ngOnInit(): void {
+        this,this.getThemes().then(names => this.themeNames = names)
+    }
+
+    private async getThemes(): Promise<string[]> {
+        return  await this.themeService.getPackageNames()
     }
 }

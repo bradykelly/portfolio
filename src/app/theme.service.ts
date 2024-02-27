@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Object, Objects, Package} from "./npm.api/responseTypes";
-import {Observable} from "rxjs";
+import {Object, Objects} from "./npm.api/responseTypes";
+import {lastValueFrom} from "rxjs";
 
 @Injectable({
     providedIn: 'root'
@@ -10,18 +10,11 @@ export class ThemeService {
 
     private apiUrl = `https://registry.npmjs.org/-/v1/search?text=jsonresume-theme`;
     private responseObjects!: Object[];
-    packageNames: string[] = [];
 
-    constructor(private client: HttpClient) {
-        client.get<Objects>(this.apiUrl)
-            .subscribe(data => {
-                this.responseObjects = data.objects
-            })
-    }
+    constructor(private client: HttpClient) { }
 
-    getPackageNames(): string[] {
-        let names = this.responseObjects.map(obj => obj.package.name)
-        names.sort()
-        return names
+    async getPackageNames(): Promise<string[]> {
+        let objects = await lastValueFrom(this.client.get<Objects>(this.apiUrl))
+        return objects.objects.map(obj => obj.package.name).sort()
     }
 }
