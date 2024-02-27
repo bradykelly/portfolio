@@ -27,9 +27,9 @@ export class AppComponent implements OnInit{
 
     constructor(private themeService: ThemeService) {}
 
-    ngOnInit(): void {
+    ngOnInit = (): void => {
         this.getThemes().then(names => this.themeNames = names)
-    }
+    };
 
     onThemeChanged(event: Event) {
         const target = event.target as HTMLSelectElement

@@ -508,6 +508,7 @@
     ],
     "projects": [],
     "meta": {
+        "language": "en",
         "theme": "macchiato",
         "version": "v1.0.0",
         "canonical": "https://github.com/jsonresume/resume-schema/blob/v1.0.0/schema.json"
