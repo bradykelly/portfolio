@@ -15,6 +15,6 @@ export class ThemeService {
 
     async getPackageNames(): Promise<string[]> {
         let objects = await lastValueFrom(this.client.get<Objects>(this.apiUrl))
-        return objects.objects.map(obj => obj.package.name).sort()
+        return objects.objects.map(obj => obj.package.name.replace("jsonresume-theme-", "")).sort()
     }
 }

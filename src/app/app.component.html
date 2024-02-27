@@ -1,6 +1,6 @@
-<div class="col">
-    <select [(ngModel)]="selectedTheme">
-        <option *ngFor="let theme of themeNames" [value]="theme">{{theme}}</option>
-    </select>
+<select [(ngModel)]="selectedTheme">
+    <option *ngFor="let theme of themeNames" [value]="theme">{{theme}}</option>
+</select>
+<div class="scrollable-content">
+    <router-outlet><cv-frame></cv-frame></router-outlet>
 </div>
-<router-outlet><cv-frame></cv-frame></router-outlet>
