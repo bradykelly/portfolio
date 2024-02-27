@@ -5,6 +5,8 @@ import {ThemeService} from "./theme.service";
 import {FormsModule} from "@angular/forms";
 import {NgForOf} from "@angular/common";
 import {LoggingTestComponent} from "./logging-test/logging-test.component";
+import {environment} from "../environments/environment";
+
 
 /**
  * The ISO 216 standard defines the A4 paper size, and its dimensions are 210 millimeters by 297 millimeters.
@@ -21,13 +23,19 @@ import {LoggingTestComponent} from "./logging-test/logging-test.component";
 export class AppComponent implements OnInit{
 
     themeNames: string[] = []
-    selectedTheme = ""
+    selectedTheme = environment.defaultTheme;
 
-    constructor(private themeService: ThemeService) {
-    }
+    constructor(private themeService: ThemeService) {}
 
     ngOnInit(): void {
-        this,this.getThemes().then(names => this.themeNames = names)
+        this.getThemes().then(names => this.themeNames = names)
+    }
+
+    onThemeChanged(event: Event) {
+        const target = event.target as HTMLSelectElement
+        if (target) {
+            this.selectedTheme = target.value
+        }
     }
 
     private async getThemes(): Promise<string[]> {

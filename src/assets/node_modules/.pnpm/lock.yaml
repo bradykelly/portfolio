@@ -1,0 +1,10 @@
+lockfileVersion: '6.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+dependencies:
+  index.js:
+    specifier: link:C:/projects/portfolio/src/assets/node_modules/@jsonresume/jsonresume-theme-class/index.js
+    version: link:node_modules/@jsonresume/jsonresume-theme-class/index.js

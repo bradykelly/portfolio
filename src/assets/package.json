@@ -1,0 +1,5 @@
+{
+	"dependencies": {
+		"index.js": "link:C:/projects/portfolio/src/assets/node_modules/@jsonresume/jsonresume-theme-class/index.js"
+	}
+}

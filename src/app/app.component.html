@@ -1,6 +1,6 @@
-<select [(ngModel)]="selectedTheme">
+<select [(ngModel)]="selectedTheme" (ngModelChange)="onThemeChanged($event)">
     <option *ngFor="let theme of themeNames" [value]="theme">{{theme}}</option>
 </select>
 <div class="scrollable-content">
-    <router-outlet><cv-frame></cv-frame></router-outlet>
+    <router-outlet><cv-frame [selectedTheme]="selectedTheme"></cv-frame></router-outlet>
 </div>
